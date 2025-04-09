@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <main>
+        <div class="row">
+            <div class="col-12 col-md-10 col-lg-8 col-xl-6 offset-md-1 offset-lg-2 offset-xl-3">
+
+                <div class="qrcode bg-page"
+                     style="background: url({{ absolute_url(asset('assets/image/cover.jpeg')) }}); background-size: cover;">
+                    <div class="content">
+                        <h1 class="phone-master">{{ participant.telephone }}</h1>
+                        <img src="{{ absolute_url(asset('qrcodes/' ~ ticket_membre.media)) }}" alt="" class="img-fluid code">
+                    </div>
+                </div>
+
+                <div class="ticket">
+                    <div class="ticket-main">
+                        <div class="card">
+                            <h1 class="identite">{{ participant.nom|upper }} {{ participant.prenom|upper }}</h1>
+                            <h3 class="club">{{ participant.club }}</h3>
+                            <span class="date">{{ ticket_membre.createdAt|date('Y-m-d H:i:s') }}</span>
+
+                            <div class="row row-cols-2 g-2 mt-5 text-center">
+                                <div class="col">
+                                    <h2 class="numero">{{ ticket_membre.place|position_ticket }}</h2>
+                                    <label for="">Table</label>
+                                </div>
+                                <div class="col">
+                                    {% set nb = participant.place - 1 %}
+                                    <h2 class="numero">{{ nb }}</h2>
+                                    <label for="">Invités</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ticket-invite mt-5">
+                        <h4 class="label">Liste des invités</h4>
+                        <div class="row row-cols-1 g-2">
+                            {% for ticket in ticket_invite %}
+                                <div class="col mt-3">
+                                    <div class="card">
+                                        <div class="row g-0 align-items-center">
+                                            <div class="col-4">
+                                                <img src="{{ absolute_url(asset('qrcodes/' ~ ticket.media)) }}" alt="" class="img-fluid">
+                                            </div>
+                                            <div class="col-8">
+                                                <div class="card-body">
+                                                    <h3 class="invite-identite {{ ticket|identite_css }}">
+                                                        {{ ticket|identite_invite  }}
+                                                    </h3>
+                                                    <h5 class="invite-telephone {{ ticket|identite_css }}">
+                                                        {{ ticket.telephone ? ticket.telephone : 'Téléphone à definir' }}
+                                                    </h5>
+                                                    <div class="invite-table">
+                                                        <label for="">Table:</label>
+                                                        <span>{{ ticket.place ? ticket.place : 'Non-défini'}}</span>
+                                                    </div>
+                                                    <div class="invite-actions">
+                                                        <a href="modification.html"><i
+                                                                    class="bi bi-pencil-square"></i> Modifier</a>
+                                                        |
+                                                        <a href="#"><i class="bi bi-share"></i> Partager</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% else %}
+                                Aucun invité
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+{% endblock %}
+
+{% block title %}
+Mes tickets
+{% endblock %}
+

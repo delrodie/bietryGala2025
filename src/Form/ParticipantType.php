@@ -16,11 +16,11 @@ class ParticipantType extends AbstractType
     {
         $builder
             ->add('nom', TextType::class,[
-                'attr' => ['class' => 'form-control', 'autcomplete' => "off", 'placeholder'=>"Nom de famille"],
+                'attr' => ['class' => 'form-control', 'autocomplete' => "off", 'placeholder'=>"Nom de famille"],
                 'label' => "Nom de famille"
             ])
             ->add('prenom', TextType::class,[
-                'attr' => ['class' => 'form-control', 'autcomplete' => "off", 'placeholder'=>"Prenoms"],
+                'attr' => ['class' => 'form-control', 'autocomplete' => "off", 'placeholder'=>"Prenoms"],
                 'label' =>  "Prenoms"
             ])
             ->add('telephone', TelType::class, [

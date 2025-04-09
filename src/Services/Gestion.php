@@ -38,7 +38,7 @@ class Gestion
             for ($i = 0; $i < $nb_place; $i++) {
                 $code = $this->codeTicket();
                 $ticket = new Ticket();
-                $ticket->setTelephone($participant->getTelephone());
+                $i === 0 ? $ticket->setTelephone($participant->getTelephone()) : '';
                 $i === 0 ? $ticket->setStatut(self::STATUT_MEMBRE) : $ticket->setStatut(self::STATUT_INVITE);
                 $ticket->setFlag(self::FLAG_NONINSTALLE);
                 $ticket->setCode($code);
@@ -72,7 +72,7 @@ class Gestion
             encoding: new Encoding('UTF-8'),
             errorCorrectionLevel: ErrorCorrectionLevel::High,
             size: 500,
-            margin: 10,
+            margin: 30,
         );
         $result = $builder->build();
 
