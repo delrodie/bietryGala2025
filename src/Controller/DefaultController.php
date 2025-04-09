@@ -13,6 +13,7 @@ class DefaultController extends AbstractController
     #[Route('/', name: 'app_home')]
     public function index(): Response
     {
-        return $this->render('frontend/home.html.twig');
+        return $this->redirectToRoute('app_participation_new');
+//        return $this->render('frontend/home.html.twig');
     }
 }

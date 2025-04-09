@@ -1,0 +1,124 @@
+{% extends 'base.html.twig' %}
+{% block title %} {{ parent()}} Gala de bienfaisance mai 2025 {% endblock %}
+{% block body %}
+    <main>
+        <div class="row illustration">
+            <div class="col-12 col-md-10 col-lg-8 col-xl-6 offset-md-1 offset-lg-2 offset-xl-3" data-bs-toggle="modal" data-bs-target="#coverModal">
+                <img src="{{ absolute_url(asset('assets/image/cover.jpeg')) }}" alt="Diner gala de bienfaisance Rotary Abidjan Bietry "
+                     class="img-fluid cover">
+            </div>
+
+            <div class="modal fade" id="coverModal" tabindex="-1" aria-labelledby="coverModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <img src="{{ absolute_url(asset('assets/image/cover.jpeg')) }}" alt="" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row decompte">
+            <div class="col-12 col-md-10 col-lg-8 col-xl-6 offset-md-1 offset-lg-2 offset-xl-3 text-center">
+                <div class="row row-cols-4 g-2">
+                    <div class="col">
+                        <div class="timer">
+                            <h1 class="jour">1</h1>
+                            <div class="label">Jour(s)</div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="timer">
+                            <h1 class="heure">1</h1>
+                            <div class="label">Heure(s)</div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="timer">
+                            <h1 class="minute">1</h1>
+                            <div class="label">Minute(s)</div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="timer">
+                            <h1 class="seconde">1</h1>
+                            <div class="label">Seconde(s)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="formulaire">
+            <div class="row">
+                <div class="col-12 col-md-10 col-lg-8 col-xl-6 offset-md-1 offset-lg-2 offset-xl-3">
+                    <h2 class="legend">Formulaire d'enregistrement</h2>
+                    {{ form_start(form) }}
+                    <div class="row form-group">
+                        <div class="col-12 form-floating mt-3">
+                            {{ form_widget(form.nom) }}
+                            {{ form_label(form.nom) }}
+                            {{ form_errors(form.nom) }}
+                        </div>
+                        <div class="col-12 form-floating mt-3">
+                            {{ form_widget(form.prenom) }}
+                            {{ form_label(form.prenom) }}
+                            {{ form_errors(form.prenom) }}
+                        </div>
+                        <div class="col-12 form-floating mt-3">
+                            {{ form_widget(form.telephone) }}
+                            {{ form_label(form.telephone) }}
+                            {{ form_errors(form.telephone) }}
+                        </div>
+                        <div class="col-12 form-floating mt-3">
+                            {{ form_widget(form.club) }}
+                            {{ form_label(form.club) }}
+                            {{ form_errors(form.club) }}
+                        </div>
+                        <div class="col-12 form-floating mt-3">
+                            {{ form_widget(form.place) }}
+                            {{ form_label(form.place) }}
+                            {{ form_errors(form.place) }}
+                        </div>
+                        <div class="col-12 mt-4 text-center montant">
+                            <span class="label"><span id="montantTotal">0</span> FCFA</span>
+                        </div>
+                        <div class="col-12 d-grid gap-4 mt-5">
+                            {{ form_widget(form) }}
+                            <button type="submit" class="btn btn-warning btn-lg">Enregistrer</button>
+                        </div>
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ absolute_url(asset('assets/js/decompte.js')) }}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const placeSelect = document.getElementById('participant_place');
+            const montantSpan = document.getElementById('montantTotal');
+            const prixUnitaire = 70000;
+
+            function updateMontant() {
+                const place = parseInt(placeSelect.value) || 0;
+                const montant = place * prixUnitaire;
+                montantSpan.textContent = montant.toLocaleString('fr-FR');
+            }
+
+            placeSelect.addEventListener('change', updateMontant);
+            updateMontant(); // pour initialiser le montant au cas où un nombre est déjà sélectionné
+        });
+    </script>
+
+{% endblock %}
