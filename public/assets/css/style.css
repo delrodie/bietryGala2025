@@ -1,0 +1,312 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css");
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+body {
+  font-family: "Open Sans", sans-serif;
+  background-color: #eaf2ec;
+}
+
+main {
+  margin-bottom: 100px;
+}
+
+.illustration {
+  margin: 10px auto 20px;
+}
+.illustration img {
+  opacity: 1;
+}
+.illustration img.cover {
+  border-radius: 20px;
+}
+
+.decompte {
+  padding: 0 10px;
+}
+
+.decompte .timer {
+  background: #d17402;
+  padding: 10px 5px;
+  text-align: center;
+  color: white;
+  cursor: pointer;
+  transition: 1s linear 500ms;
+}
+
+.decompte .timer h1 {
+  font-size: 1.5rem;
+  font-weight: 900;
+}
+
+.decompte .timer .label {
+  font-weight: 300;
+  font-size: 0.9rem;
+  margin-top: 5px;
+}
+
+.decompte .timer:hover {
+  background: darkred;
+}
+
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .decompte {
+    margin-top: 120px;
+  }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  .decompte {
+    margin-top: 80px;
+  }
+}
+@media (max-width: 767px) {
+  .decompte {
+    margin-top: 30px;
+  }
+}
+.formulaire {
+  margin: 30px auto;
+  padding: 10px 20px;
+}
+.formulaire .legend {
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #0e1d0a;
+}
+.formulaire label {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #7a7979;
+  font-style: italic;
+  margin-left: 5px;
+}
+.formulaire .form-control,
+.formulaire .form-select {
+  border-radius: 0;
+  background: rgba(14, 29, 10, 0.15);
+  border: 1px solid rgba(14, 29, 10, 0.15);
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+.formulaire .montant {
+  font-weight: 900;
+  color: #fff;
+}
+.formulaire .montant .label {
+  background: darkred;
+  padding: 13px 10px 10px;
+  text-align: center;
+  color: white;
+}
+.formulaire .montant .label span {
+  font-size: 1.6rem;
+}
+.formulaire .btn {
+  color: #fff;
+  background: #d17402;
+  border: 1px solid #d17402;
+  border-radius: 0;
+  font-weight: 600;
+}
+
+.qrcode {
+  margin: 0 0 20px;
+  padding: 0;
+  text-align: center;
+}
+.qrcode.bg-page {
+  position: relative;
+  width: 100%;
+  height: 200px;
+}
+.qrcode.bg-page .content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+.qrcode h1 {
+  color: white;
+  color: #fff;
+  margin-bottom: 60px;
+  font-size: 1.7rem;
+  font-weight: 700;
+  text-align: center;
+}
+.qrcode .code {
+  position: absolute;
+  background: #fff;
+  width: 60%;
+  top: 50%;
+}
+@media screen and (min-width: 468px) {
+  .qrcode .code {
+    width: 40%;
+  }
+}
+
+.ticket {
+  margin: auto;
+  padding: 120px 0;
+}
+@media screen and (min-width: 1024px) {
+  .ticket {
+    padding-top: 150px;
+  }
+}
+.ticket-main .card {
+  background: rgba(9, 37, 1, 0.2) !important;
+  border-radius: 20px;
+  padding: 20px 10px;
+  border: solid 1px #092501;
+}
+.ticket-main .identite {
+  font-size: 1.3rem;
+  font-weight: 800;
+}
+.ticket-main .club {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+.ticket-main .date {
+  font-size: 0.9rem;
+  color: #7a7979;
+}
+.ticket-main .numero {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #649656;
+}
+.ticket-main label {
+  font-style: italic;
+  font-size: 1.1rem;
+}
+.ticket-invite .label {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #7a7979;
+  border-bottom: solid 1px #7a7979;
+}
+.ticket-invite .card {
+  background: rgba(9, 37, 1, 0.05) !important;
+  border-radius: 15px;
+  border: solid 1px #092501;
+}
+.ticket-invite .invite-identite {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0;
+  padding: 0;
+}
+@media screen and (max-width: 360px) {
+  .ticket-invite .invite-identite {
+    font-size: 0.9rem;
+  }
+}
+.ticket-invite .invite-telephone {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin: 0;
+  padding: 0;
+}
+@media screen and (max-width: 360px) {
+  .ticket-invite .invite-telephone {
+    font-size: 0.9rem;
+  }
+}
+.ticket-invite .invite-identite.anonyme, .ticket-invite .invite-telephone.anonyme {
+  color: #7a7979;
+  font-style: italic;
+}
+.ticket-invite .invite-table label {
+  font-style: italic;
+  font-size: 0.9rem;
+  color: #7a7979;
+}
+.ticket-invite .invite-table span {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #649656;
+  padding-left: 5px;
+}
+@media screen and (max-width: 360px) {
+  .ticket-invite .invite-table label {
+    font-size: 0.7em;
+  }
+  .ticket-invite .invite-table span {
+    font-size: 0.9em;
+  }
+}
+.ticket-invite .invite-actions {
+  margin-top: 7px;
+  font-size: 0.9rem;
+}
+.ticket-invite .invite-actions a {
+  text-decoration: none;
+  color: #84ac79;
+  font-weight: 700;
+  margin-right: 5px;
+}
+.ticket-invite .invite-actions a:last-child {
+  margin-left: 5px;
+}
+.ticket-invite .invite-actions a i {
+  color: #092501;
+}
+@media screen and (max-width: 360px) {
+  .ticket-invite .invite-actions {
+    font-size: 0.7rem;
+  }
+}
+
+.search {
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.search .card {
+  background: rgba(9, 37, 1, 0.05) !important;
+  border-radius: 15px;
+  border: solid 1px #092501;
+  width: 100%;
+  text-align: center;
+}
+.search .card p {
+  font-style: italic;
+}
+
+footer {
+  background: #092501;
+}
+footer .nav-link {
+  padding: 7px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #7a7979;
+  font-size: 12px;
+  border: solid 1px #092501;
+}
+footer .nav-link i {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+footer .nav-link.actif {
+  color: #fff;
+  font-weight: bold;
+  background: rgba(234, 242, 236, 0.1);
+}
+footer.bottom-fixed {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}/*# sourceMappingURL=style.css.map */

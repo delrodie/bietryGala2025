@@ -1,0 +1,104 @@
+{% extends 'base.html.twig' %}
+{% block title %} {{ parent()}} Gala de bienfaisance mai 2025 {% endblock %}
+{% block body %}
+    <main>
+        <div class="row illustration">
+            <div class="col-12 col-md-10 col-lg-8 col-xl-6 offset-md-1 offset-lg-2 offset-xl-3" data-bs-toggle="modal" data-bs-target="#coverModal">
+                <img src="{{ absolute_url(asset('assets/image/cover.jpeg')) }}" alt="Diner gala de bienfaisance Rotary Abidjan Bietry "
+                     class="img-fluid cover">
+            </div>
+
+            <div class="modal fade" id="coverModal" tabindex="-1" aria-labelledby="coverModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <img src="{{ absolute_url(asset('assets/image/cover.jpeg')) }}" alt="" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row decompte">
+            <div class="col-12 col-md-10 col-lg-8 col-xl-6 offset-md-1 offset-lg-2 offset-xl-3 text-center">
+                <div class="row row-cols-4 g-2">
+                    <div class="col">
+                        <div class="timer">
+                            <h1 class="jour">1</h1>
+                            <div class="label">Jour(s)</div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="timer">
+                            <h1 class="heure">1</h1>
+                            <div class="label">Heure(s)</div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="timer">
+                            <h1 class="minute">1</h1>
+                            <div class="label">Minute(s)</div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="timer">
+                            <h1 class="seconde">1</h1>
+                            <div class="label">Seconde(s)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="formulaire">
+            <div class="row">
+                <div class="col-12 col-md-10 col-lg-8 col-xl-6 offset-md-1 offset-lg-2 offset-xl-3">
+                    <h2 class="legend">Formulaire d'enregistrement</h2>
+                    <div class="row form-group">
+                        <div class="col-12 form-floating mt-3">
+                            <input type="text" class="form-control" id="floatingNom" placeholder="Nom">
+                            <label for="floatingNom">Nom de famille</label>
+                        </div>
+                        <div class="col-12 form-floating mt-3">
+                            <input type="text" class="form-control" id="floatingPrenom" placeholder="Prenoms">
+                            <label for="floatingPrenom">Prénoms</label>
+                        </div>
+                        <div class="col-12 form-floating mt-3">
+                            <input type="tel" class="form-control" id="floatingPhone" placeholder="Phone">
+                            <label for="floatingPhone">Téléphone</label>
+                        </div>
+                        <div class="col-12 form-floating mt-3">
+                            <input type="text" class="form-control" id="floatingClub" placeholder="Club">
+                            <label for="floatingClub">Club</label>
+                        </div>
+                        <div class="col-12 form-floating mt-3">
+                            <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                                <option selected>-- Selectionnez --</option>
+                                <option value="1">2</option>
+                                <option value="2">3</option>
+                                <option value="3">4</option>
+                            </select>
+                            <label for="floatingSelect">Nombre de places</label>
+                        </div>
+                        <div class="col-12 mt-4 text-center montant">
+                            <span class="label"><span>70.000</span> FCFA</span>
+                        </div>
+                        <div class="col-12 d-grid gap-4 mt-5">
+                            <button type="submit" class="btn btn-warning btn-lg">Enregistrer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ absolute_url(asset('assets/js/decompte.js')) }}"></script>
+{% endblock %}
