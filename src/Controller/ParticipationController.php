@@ -11,6 +11,7 @@ use App\Services\Gestion;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Attribute\Route;
@@ -21,7 +22,8 @@ class ParticipationController extends AbstractController
     public function __construct(
         private EntityManagerInterface $entityManager,
         private Gestion $_gestion,
-        private AllRepositories $allRepositories
+        private AllRepositories $allRepositories,
+        private RequestStack $requestStack
     )
     {
     }
@@ -49,9 +51,11 @@ class ParticipationController extends AbstractController
     #[Route('/{telephone}', name:'app_participation_show', methods:['GET'])]
     public function show($telephone)
     {
+        $session = $this->requestStack->getSession();
         $participant = $this->allRepositories->getParticipantByTelephone($telephone);
 
         if (!$participant) {
+            $session->set('telephone', '');
             throw new NotFoundHttpException("Aucun participant trouvé avec le téléphone : $telephone");
         }
 
@@ -67,6 +71,8 @@ class ParticipationController extends AbstractController
                 $ticketsInvites[] = $ticket;
             }
         }
+
+        $session->set('telephone', $telephone);
 
         return $this->render('frontend/participation_show.html.twig',[
             'participant' => $participant,

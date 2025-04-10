@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <main>
+        <div class="search">
+            <div class="row">
+                <div class="col-12 col-md-10 col-lg-8 col-xl-8 offset-md-1 offset-lg-2 offset-xl-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h1 class="label">Mes tickets</h1>
+                            <p>
+                                Veuillez entrer votre numéro de téléphone pour afficher vos tickets de participation.
+                            </p>
+                            <div class="formulaire">
+                                <form action="{{ path('app_checking_ticket') }}" class="form-search" id="formSearch">
+                                    <div class="input-group mb-3">
+                                        <input type="tel" class="form-control form-control-lg" placeholder="Téléhone"
+                                               aria-label="Téléphone" autocomplete="off" name="telephone">
+                                        <button class="btn btn-outline-secondary" type="submit"><i class="bi bi-search"></i></button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+{% endblock %}
+
+{% block title %}
+Mon ticket
+{% endblock %}
+

@@ -23,4 +23,9 @@ class AllRepositories
     {
         return $this->ticketRepository->findOneBy(['code' => $code]);
     }
+
+    public function getTicketByTelephone(string $telephone)
+    {
+        return $this->ticketRepository->findOneBy(['telephone' => $telephone]);
+    }
 }
