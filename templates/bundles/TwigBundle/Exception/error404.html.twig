@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <main>
+        <div class="search">
+            <div class="row">
+                <div class="col-12 col-md-10 col-lg-8 col-xl-8 offset-md-1 offset-lg-2 offset-xl-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h1 class="label"> <span style="color: darkred; font-weight:bold;"><i class="bi bi-x-circle"></i>  Oups!!</span> <br> Page non trouvée (404)</h1>
+                            <div class="mt-3">
+                                {{ exception.message|default("La page que vous recherchez n'existe pas.") }}
+                            </div>
+                            <div class="formulaire">
+                                <a href="{{ absolute_url(path('app_home')) }}" style="color: darkgreen; font-weight:bold; text-decoration:none;"><i class="bi bi-house"></i> Retour à l'accueil</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+{% endblock %}
+
+{% block title %}
+    <i class="bi bi-x-circle"></i> Page introuvable
+{% endblock %}
+
