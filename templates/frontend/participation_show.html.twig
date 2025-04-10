@@ -57,7 +57,7 @@
                                                         <span>{{ ticket.place ? ticket.place : 'Non-défini'}}</span>
                                                     </div>
                                                     <div class="invite-actions">
-                                                        <a href="modification.html"><i
+                                                        <a href="{{ absolute_url(path('app_ticket_affecter', {code: ticket.code})) }}"><i
                                                                     class="bi bi-pencil-square"></i> Modifier</a>
                                                         |
                                                         <a href="#"><i class="bi bi-share"></i> Partager</a>

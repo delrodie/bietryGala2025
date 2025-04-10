@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <main>
+        <div class="row">
+            <div class="col-12 col-md-10 col-lg-8 col-xl-6 offset-md-1 offset-lg-2 offset-xl-3">
+
+                <div class="qrcode bg-page"
+                     style="background: url({{ absolute_url(asset('assets/image/cover.jpeg')) }}); background-size: cover;">
+                    <div class="content">
+                        <h1 class="phone-master">{{ ticket.statut|statut_ticket }}</h1>
+                        <img src="{{ absolute_url(asset('qrcodes/' ~ ticket.media)) }}" alt="" class="img-fluid code">
+                    </div>
+                </div>
+                <div class="ticket">
+                    <div class="ticket-main">
+                        <div class="formulaire">
+                            {{ form_start(form) }}
+                                <h2 class="legend">Attribution du ticket</h2>
+                                <div class="row form-group">
+                                    <div class="col-12 form-floating mt-3">
+                                        {{ form_widget(form.nom) }}
+                                        {{ form_label(form.nom) }}
+                                        {{ form_errors(form.nom) }}
+                                    </div>
+                                    <div class="col-12 form-floating mt-3">
+                                        {{ form_widget(form.prenom) }}
+                                        {{ form_label(form.prenom) }}
+                                        {{ form_errors(form.prenom) }}
+                                    </div>
+                                    <div class="col-12 form-floating mt-3">
+                                        {{ form_widget(form.telephone) }}
+                                        {{ form_label(form.telephone) }}
+                                        {{ form_errors(form.telephone) }}
+                                    </div>
+                                    <div class="col-12 d-grid gap-4 mt-5">
+                                        {{ form_widget(form) }}
+                                        <button type="submit" class="btn btn-warning btn-lg">Affecter</button>
+                                    </div>
+                                </div>
+                            {{ form_end(form) }}
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+{% endblock %}
+
+{% block title %}
+    Affectation de ticket
+{% endblock %}
+
