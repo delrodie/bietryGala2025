@@ -35,6 +35,8 @@
 
                     </div>
                     </div>
+
+
                     {% if is_granted('ROLE_ADMIN') %}
                         <div class="row text-center mt-3">
                             <div class="col">
@@ -45,6 +47,12 @@
                                     </div>
 
                                 </form>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="row text-end mt-5">
+                            <div class="col">
+                                <a href="{{ path('app_ticket_liste') }}" style="text-decoration:none; color: darkgreen; font-style:italic;">Retour à la liste des tickets</a>
                             </div>
                         </div>
                     {% endif %}

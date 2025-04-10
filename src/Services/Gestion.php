@@ -8,6 +8,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Endroid\QrCode\Builder\Builder;
 use Endroid\QrCode\Encoding\Encoding;
 use Endroid\QrCode\ErrorCorrectionLevel;
+use Endroid\QrCode\RoundBlockSizeMode;
 use Endroid\QrCode\Writer\PngWriter;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
@@ -76,7 +77,11 @@ class Gestion
             encoding: new Encoding('UTF-8'),
             errorCorrectionLevel: ErrorCorrectionLevel::High,
             size: 350,
-            margin: 30,
+            margin: 25,
+            roundBlockSizeMode: RoundBlockSizeMode::Margin,
+            logoPath: __DIR__.'/../../public/assets/image/fanion.png',
+            logoResizeToWidth: 80,
+            logoPunchoutBackground: true,
         );
         $result = $builder->build();
 

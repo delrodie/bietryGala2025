@@ -57,10 +57,17 @@
                                                         <span>{{ ticket.place ? ticket.place : 'Non-défini'}}</span>
                                                     </div>
                                                     <div class="invite-actions">
+                                                        {% set link_to_share = absolute_url(path('app_ticket_show', { code: ticket.code })) %}
+                                                        {% set message = "Veuillez cliquer sur ce lien afin d'obtenir votre billet pour le dîner de gala du Rotary Club Abidjan Biétry  : " ~ '\n\n' ~ link_to_share %}
                                                         <a href="{{ absolute_url(path('app_ticket_affecter', {code: ticket.code})) }}"><i
                                                                     class="bi bi-pencil-square"></i> Modifier</a>
                                                         |
-                                                        <a href="#"><i class="bi bi-share"></i> Partager</a>
+                                                        <a
+                                                                href="https://wa.me/?text={{ message|url_encode }}"
+                                                                target="_blank">
+                                                            <i class="bi bi-share"></i> Partager
+                                                        </a>
+
                                                     </div>
                                                 </div>
                                             </div>

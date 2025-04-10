@@ -4,7 +4,30 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{% block title %}Rotary Abidjan Bietry ::{% endblock %}</title>
-        <link rel="icon" href="">
+
+        {%  block meta %}
+            <meta name="keywords" content="Rotary, Abidjan, Bietry, club">
+            <meta name="description" content="Diner de gala de bienfaisance 10 mai 2025, pour la construction d'un bâtiment de soins à pouponnière de Dabou" />
+            <link rel="canonical" href="{{ absolute_url(path('app_home')) }}" />
+            <link rel="next" href="{{ absolute_url(path('app_checking_ticket')) }}" />
+
+            <meta property="og:locale" content="fr_FR" />
+            <meta property="og:locale:alternate" content="en_US" />
+            <meta property="og:type" content="website" />
+            <meta property="og:title" content="Rotary Club Abidjan Bietry" />
+            <meta property="og:description" content="Diner de gala de bienfaisance 10 mai 2025, pour la construction d'un bâtiment de soins à pouponnière de Dabou" />
+            <meta property="og:url" content="{{ absolute_url(path('app_home')) }}" />
+            <meta property="og:site_name" content="Rotary Club Abidjan Bietry" />
+            <meta property="article:modified_time" content="2025-04-10T09:08:30+00:00" />
+            <meta property="og:image" content="{{ absolute_url(asset('assets/image/cover.jpeg')) }}" />
+            <meta property="og:image:type" content="image/svg+xml" />
+            <meta name="twitter:card" content="summary_large_image" />
+            <meta name="twitter:description" content="Diner de gala de bienfaisance 10 mai 2025, pour la construction d'un bâtiment de soins à pouponnière de Dabou"/>
+            <meta name="twitter:title" content="Rotary Club Abidjan Bietry"/>
+            <meta name="twitter:domain" content="Rotary Club Abidjan Bietry"/>
+            <meta name="twitter:image:src" content="{{ absolute_url(asset('assets/image/cover.jpeg')) }}"/>
+        {% endblock %}
+        <link rel="icon" href="{{ absolute_url(asset('assets/image/fanion.png')) }}">
         {% block stylesheets %}
             <link rel="stylesheet" href="{{ absolute_url(asset('assets/css/style.css')) }}">
         {% endblock %}

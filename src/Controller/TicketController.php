@@ -20,6 +20,29 @@ class TicketController extends AbstractController
     {
     }
 
+    #[Route('/', name: 'app_ticket_liste')]
+    public function liste(Request $request)
+    {
+        $session = $request->getSession();
+        $session->remove('telephone');
+
+        return $this->redirectToRoute('app_checking_ticket');
+    }
+
+    #[Route('/{code}', name:'app_ticket_show', methods:['GET'])]
+    public function show($code)
+    {
+        $ticket = $this->allRepositories->getTicketByCode($code);
+
+        if (!$ticket){
+            throw new NotFoundHttpException("Oups!! le ticket recherché n'a pas été trouvé.");
+        }
+
+        return $this->render('frontend/checking_search.html.twig',[
+            'ticket' => $ticket,
+        ]);
+    }
+
     #[Route('/{code}/affecter', name: 'app_ticket_affecter', methods: ['GET','POST'])]
     public function affecter(Request $request, $code): Response
     {
