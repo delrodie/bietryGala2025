@@ -16,6 +16,8 @@ class GalaExtension extends AbstractExtension
             // parameter: ['is_safe' => ['html']]
             // Reference: https://twig.symfony.com/doc/3.x/advanced.html#automatic-escaping
             new TwigFilter('position_ticket', [GalaRuntime::class, 'ticketPosition']),
+            new TwigFilter('flag_ticket', [GalaRuntime::class, 'ticketFlag']),
+            new TwigFilter('statut_ticket', [GalaRuntime::class, 'ticketStatut']),
             new TwigFilter('identite_invite', [GalaRuntime::class, 'identiteInvite']),
             new TwigFilter('identite_css', [GalaRuntime::class, 'identiteCss']),
         ];

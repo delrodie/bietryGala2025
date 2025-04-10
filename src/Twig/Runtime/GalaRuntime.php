@@ -19,6 +19,16 @@ class GalaRuntime implements RuntimeExtensionInterface
         return $value ?? 'NON-DEFINI';
     }
 
+    public function ticketFlag($value)
+    {
+        return $value === 0 ? "NON" : "OUI";
+    }
+
+    public function ticketStatut($value)
+    {
+        return $value === $this->_gestion::STATUT_MEMBRE ? $this->_gestion::STATUT_MEMBRE : $this->_gestion::STATUT_INVITE;
+    }
+
     public function identiteInvite($value)
     {
         $nom = $value->getNom()? $value->getNom() : null;

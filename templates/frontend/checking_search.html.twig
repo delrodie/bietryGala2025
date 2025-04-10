@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <main>
+        <div class="row">
+            <div class="col-12 col-md-10 col-lg-8 col-xl-6 offset-md-1 offset-lg-2 offset-xl-3">
+
+                <div class="qrcode bg-page"
+                     style="background: url({{ absolute_url(asset('assets/image/cover.jpeg')) }}); background-size: cover;">
+                    <div class="content">
+                        <h1 class="phone-master">{{ ticket.statut|statut_ticket }}</h1>
+                        <img src="{{ absolute_url(asset('qrcodes/' ~ ticket.media)) }}" alt="" class="img-fluid code">
+                    </div>
+                </div>
+                <div class="ticket">
+                <div class="ticket-main">
+                    <div class="card">
+                        <h1 class="identite">{{ ticket|identite_invite }}</h1>
+                        <h3 class="club">
+                            {{ ticket.statut != 'MEMBRE' ? ticket.participant.nom|upper ~' '~ ticket.participant.prenom|upper : ticket.participant.club }}
+                        </h3>
+                        <span class="date">{{ ticket.createdAt|date('Y-m-d H:i:s') }}</span>
+
+                        <div class="row row-cols-2 g-2 mt-5 text-center">
+                            <div class="col">
+                                <h2 class="numero">{{ ticket.place|position_ticket }}</h2>
+                                <label for="">Table</label>
+                            </div>
+                            <div class="col">
+                                <h2 class="numero">{{ ticket.flag|flag_ticket }}</h2>
+                                <label for="">Installé(e)</label>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    </div>
+                    <div class="row text-center mt-3">
+                        <div class="col">
+                            <form action="">
+                                <input type="hidden" value="{{ ticket.code }}">
+                                <div class="d-grid gap-2">
+                                    <button class="btn btn-warning">Valider</button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+
+    </main>
+{% endblock %}
+
+{% block title %}
+    Mon ticket
+{% endblock %}
+

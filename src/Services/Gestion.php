@@ -38,11 +38,15 @@ class Gestion
             for ($i = 0; $i < $nb_place; $i++) {
                 $code = $this->codeTicket();
                 $ticket = new Ticket();
-                $i === 0 ? $ticket->setTelephone($participant->getTelephone()) : '';
                 $i === 0 ? $ticket->setStatut(self::STATUT_MEMBRE) : $ticket->setStatut(self::STATUT_INVITE);
                 $ticket->setFlag(self::FLAG_NONINSTALLE);
                 $ticket->setCode($code);
                 $ticket->setMedia($this->qrCodeGenerator($code));
+                if ($i === 0){
+                    $ticket->setNom($participant->getNom());
+                    $ticket->setPrenom($participant->getPrenom());
+                    $ticket->setTelephone($participant->getTelephone());
+                }
 
                 $participant->addTicket($ticket);
 
@@ -65,13 +69,13 @@ class Gestion
 
     public function qrCodeGenerator(string $code): string
     {
-        $url = $this->urlGenerator->generate('app_home', ['code'=> $code], UrlGeneratorInterface::ABSOLUTE_URL);
+        $url = $this->urlGenerator->generate('app_checking_search', ['code'=> $code], UrlGeneratorInterface::ABSOLUTE_URL);
         $builder = new Builder(
             writer : new PngWriter(),
             data: $url,
             encoding: new Encoding('UTF-8'),
             errorCorrectionLevel: ErrorCorrectionLevel::High,
-            size: 500,
+            size: 350,
             margin: 30,
         );
         $result = $builder->build();
