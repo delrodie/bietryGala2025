@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\Form\TicketAffectedType;
 use App\Services\AllRepositories;
+use App\Services\Gestion;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,7 +17,7 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/ticket')]
 class TicketController extends AbstractController
 {
-    public function __construct(private readonly AllRepositories $allRepositories, private readonly EntityManagerInterface $entityManager)
+    public function __construct(private readonly AllRepositories $allRepositories, private readonly EntityManagerInterface $entityManager, private readonly Gestion $gestion)
     {
     }
 
@@ -54,6 +55,13 @@ class TicketController extends AbstractController
         $form = $this->createForm(TicketAffectedType::class, $ticket);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            if ($this->gestion->existTelephone($ticket)){
+                return $this->render('frontend/ticket_affecter.html.twig',[
+                    'ticket' => $ticket,
+                    'form' => $form
+                ]);
+            }
+
             $this->entityManager->flush();
 
             return $this->redirectToRoute('app_checking_search', ['code' => $ticket->getCode()]);

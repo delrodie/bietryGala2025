@@ -4,12 +4,15 @@ namespace App\Services;
 
 use App\Entity\Ticket;
 use App\Repository\TicketRepository;
+use App\Services\AllRepositories;
 use Doctrine\ORM\EntityManagerInterface;
 use Endroid\QrCode\Builder\Builder;
 use Endroid\QrCode\Encoding\Encoding;
 use Endroid\QrCode\ErrorCorrectionLevel;
 use Endroid\QrCode\RoundBlockSizeMode;
 use Endroid\QrCode\Writer\PngWriter;
+use Flasher\Notyf\Prime\NotyfInterface;
+use Flasher\Prime\FlasherInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class Gestion
@@ -22,9 +25,11 @@ class Gestion
     private string $qrCodeDirector;
     public function __construct(
         private EntityManagerInterface $entityManager,
-        private TicketRepository $ticketRepository,
-        string $qrCodeDirectory,
-        private UrlGeneratorInterface $urlGenerator,
+        private TicketRepository       $ticketRepository,
+        string                         $qrCodeDirectory,
+        private UrlGeneratorInterface  $urlGenerator, private readonly AllRepositories $allRepositories,
+        private FlasherInterface $flasher,
+        private NotyfInterface $notyf,
     )
     {
         $this->qrCodeDirector = $qrCodeDirectory;
@@ -91,5 +96,45 @@ class Gestion
         $result->saveToFile($path);
 
         return $filename;
+    }
+
+    public function existParticipant(object $participant): bool
+    {
+        $telephone = $participant->getTelephone();
+        $verif = $this->allRepositories->getParticipantByTelephone($telephone);
+        if ($verif){
+            $this->notyf
+                ->position('x', 'center')
+                ->position('y', 'center')
+                ->error("Ce numero de téléphone {$telephone} a déjà été enregistré. Veuillez enregistrer un autre numéro", ['position', 'bottom-left'], 'Participant existe déjà');
+            return true;
+        }
+        return false;
+    }
+
+    public function existTelephone(object $ticket): bool
+    {
+        $telephone = $ticket->getTelephone();
+        $verif = $this->allRepositories->getTicketByTelephone($telephone);
+        $notification =  $this->notyf
+            ->position('x', 'center')
+            ->position('y', 'center');
+        if ($verif){
+                $notification->error("Le numéro de telephone {$telephone} a déjà été attribué à un qrCode.",[],'Echec!');
+            return true;
+        }
+
+        $notification->success("Vous pouvez transferer ce code au concerné en cliquant sur 'Partager'",[], "Succès!");
+        return false;
+    }
+
+    public function notificationTicketInvite($ticket): void
+    {
+        if ($ticket){
+            $this->notyf
+                ->position('x', 'center')
+                ->position('y', 'center')
+                ->info("Vous pouvez attribuer les qrCodes à vos invités, puis les leur transmettre via WhatsApp.", [], 'Félicitations');
+        }
     }
 }

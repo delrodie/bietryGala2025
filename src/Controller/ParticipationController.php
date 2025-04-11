@@ -36,6 +36,13 @@ class ParticipationController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
+            if ($this->_gestion->existParticipant($participation)){
+                return $this->render('frontend/participantion_new.html.twig',[
+                    'form' => $form->createView(),
+                    'participation' => $participation,
+                ]);
+            }
+
             $this->_gestion->saveParticipation($participation);
             $this->entityManager->persist($participation);
             $this->entityManager->flush();
@@ -73,6 +80,7 @@ class ParticipationController extends AbstractController
         }
 
         $session->set('telephone', $telephone);
+        $this->_gestion->notificationTicketInvite($ticketsInvites);
 
         return $this->render('frontend/participation_show.html.twig',[
             'participant' => $participant,
