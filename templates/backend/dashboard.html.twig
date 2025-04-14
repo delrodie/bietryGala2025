@@ -1,0 +1,122 @@
+{% extends 'backend_layout.html.twig' %}
+{% block body %}
+    <main class="backoffice">
+        <section class="statistiques">
+            <div class="container">
+                <div class="row row-cols-1 row-cols-md-2 g-4">
+                    <div class="col statistiques-item">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h2 class="valeur">{{ tickets|length ? tickets|length : 0 }}</h2>
+                                <p class="label">Participants</p>
+
+                                <div class="row row-cols-1 row-cols-md-2 g-2 mt-3">
+                                    <div class="col">
+                                        <div class="card h-100">
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{ tickets|nombre_membre }}</h5>
+                                                <p class="label">Membres</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="card h-100">
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{ tickets|nombre_invite }}</h5>
+                                                <p class="label-s">Invité(s)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col statistiques-item">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                {% set montant = tickets|length * 70000 %}
+                                <h2 class="valeur">{{ montant|number_format(0,'','.')}} FCFA</h2>
+                                <p class="label">Total montant</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="liste mt-5">
+            <div class="container">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title mb-5">Liste des participants</h5>
+                        <table class=" table-striped table-bordered table-hover table-responsive table-sm"
+                               id="liste" style="width: 100%; background: transparent">
+                            <thead>
+                            <tr>
+                                <th class="text-center">#</th>
+                                <th class="text-center">Nom & Prenoms</th>
+                                <th class="text-center">Telephone</th>
+                                <th class="text-center">Table</th>
+                                <th class="text-center">Ticket</th>
+                                <th class="text-center">Statut</th>
+                                <th class="text-center">Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for ticket in tickets %}
+                                <tr>
+                                    <th scope="row">{{ loop.index }}</th>
+                                    <td>{{ ticket.nom|upper }} {{ ticket.prenom|upper }}</td>
+                                    <td class="text-center">{{ ticket.telephone }}</td>
+                                    <td class="text-center">{{ ticket.place }}</td>
+                                    <td class="text-center">{{ ticket.code }}</td>
+                                    <td class="text-center">{{ ticket.statut }}</td>
+                                    <td class="text-center">
+                                        <a href="table.html"><i class="bi bi-pencil-square"></i></a>
+                                        <a href=""></a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock %}
+{% block title %} Tableau de bord {% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.2.2/css/dataTables.bootstrap5.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.2.2/css/buttons.bootstrap5.css">
+    {{ parent() }}
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://cdn.datatables.net/2.2.2/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.2.2/js/dataTables.bootstrap5.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.2.2/js/dataTables.buttons.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.2.2/js/buttons.bootstrap5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.2.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.2.2/js/buttons.print.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.2.2/js/buttons.colVis.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/3.0.4/js/dataTables.responsive.js"></script>
+    <script src="https://cdn.datatables.net/responsive/3.0.4/js/responsive.bootstrap5.js"></script>
+    <script>
+        new DataTable('#liste', {
+            layout: {
+                topStart: {
+                    buttons: ['copy', 'excel', 'pdf', 'colvis']
+                }
+            },
+            language: {
+                url: 'https://cdn.datatables.net/plug-ins/2.2.2/i18n/fr-FR.json',
+            },
+            responsive: true
+        });
+    </script>
+{% endblock %}

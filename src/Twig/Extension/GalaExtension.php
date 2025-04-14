@@ -20,6 +20,8 @@ class GalaExtension extends AbstractExtension
             new TwigFilter('statut_ticket', [GalaRuntime::class, 'ticketStatut']),
             new TwigFilter('identite_invite', [GalaRuntime::class, 'identiteInvite']),
             new TwigFilter('identite_css', [GalaRuntime::class, 'identiteCss']),
+            new TwigFilter('nombre_membre', [GalaRuntime::class, 'ticketMembre']),
+            new TwigFilter('nombre_invite', [GalaRuntime::class, 'ticketInvite']),
         ];
     }
 

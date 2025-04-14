@@ -42,4 +42,24 @@ class GalaRuntime implements RuntimeExtensionInterface
         $prenom = $value->getPrenom() ? $value->getPrenom() : null;
         return $nom.$prenom ? '' : "anonyme";
     }
+
+    public function ticketMembre($value)
+    {
+        $nombre= 0;
+        foreach ($value as $item) {
+            $item->getStatut() === $this->_gestion::STATUT_MEMBRE ? $nombre++ : $nombre = $nombre;
+        }
+
+        return $nombre;
+    }
+
+    public function ticketInvite($value): int
+    {
+        $nombre = 0;
+        foreach ($value as $item){
+            $item->getStatut() === $this->_gestion::STATUT_INVITE ? $nombre++ : $nombre;
+        }
+
+        return $nombre;
+    }
 }

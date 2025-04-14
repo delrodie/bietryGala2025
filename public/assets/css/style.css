@@ -269,6 +269,17 @@ main {
   align-items: center;
   justify-content: center;
 }
+.search .dashboard-link {
+  margin-bottom: 150px;
+  text-align: end;
+  margin-right: 30px;
+}
+.search .dashboard-link a {
+  color: #649656;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
 .search .card {
   background: rgba(9, 37, 1, 0.05) !important;
   border-radius: 15px;
@@ -309,4 +320,108 @@ footer.bottom-fixed {
   width: 100%;
   z-index: 1000;
   box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar > .container {
+  justify-content: start;
+}
+.navbar-brand {
+  margin-left: 10px;
+  font-weight: 700;
+  color: #84ac79;
+}
+@media screen and (max-width: 360px) {
+  .navbar-brand {
+    font-size: 1rem;
+  }
+}
+.navbar-toggler {
+  border: 0;
+}
+.navbar-toggler i {
+  font-size: 1.5rem;
+  color: #092501;
+}
+.navbar .offcanvas {
+  background: #eaf2ec;
+}
+@media screen and (max-width: 600px) {
+  .navbar .offcanvas {
+    max-width: 80% !important;
+  }
+}
+.navbar .offcanvas-body li {
+  padding: 3px 0 3px 10px;
+}
+.navbar .offcanvas-body li.nav-item i {
+  margin-right: 10px;
+}
+.navbar .offcanvas-body li:hover {
+  background: rgba(100, 150, 86, 0.1);
+  border-radius: 20px;
+}
+.navbar .offcanvas-body li:hover a {
+  color: #649656;
+}
+
+header .navbar {
+  border-bottom: solid 1px rgba(100, 150, 86, 0.2);
+}
+header .navbar.scrolled {
+  background-color: white !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.backoffice {
+  margin-top: 100px;
+}
+.backoffice .statistiques .card {
+  background: rgba(9, 37, 1, 0.05) !important;
+  border: solid 1px rgba(100, 150, 86, 0.5);
+  border-radius: 20px;
+}
+.backoffice .statistiques .card:hover {
+  background: rgba(9, 37, 1, 0.1) !important;
+}
+.backoffice .statistiques .card .valeur {
+  font-weight: 700;
+  color: #092501;
+}
+.backoffice .statistiques .card .label {
+  color: #7a7979;
+  font-style: italic;
+}
+.backoffice .statistiques .card .card {
+  background: rgba(100, 150, 86, 0.1) !important;
+}
+.backoffice .statistiques .card .card-title {
+  color: #649656;
+  font-weight: 700;
+  font-size: 1.7rem;
+}
+.backoffice .liste .card {
+  background: transparent !important;
+  border: solid 1px rgba(100, 150, 86, 0.5);
+  border-radius: 20px;
+}
+.backoffice .liste table {
+  margin-top: 30px;
+  border: solid 1px rgba(122, 121, 121, 0.15);
+}
+.backoffice .liste table thead {
+  background: rgba(9, 37, 1, 0.3);
+}
+.backoffice .liste table tr {
+  background: transparent !important;
+}
+.backoffice .liste table tr:nth-child(2n) {
+  background: rgba(100, 150, 86, 0.1) !important;
+}
+.backoffice .liste table tr:hover {
+  background: rgba(9, 37, 1, 0.1) !important;
+}
+.backoffice .liste table a {
+  color: #649656;
+  text-decoration: none;
 }/*# sourceMappingURL=style.css.map */

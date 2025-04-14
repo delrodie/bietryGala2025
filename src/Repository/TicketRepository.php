@@ -16,6 +16,14 @@ class TicketRepository extends ServiceEntityRepository
         parent::__construct($registry, Ticket::class);
     }
 
+    public function findAllTicket()
+    {
+        return $this->createQueryBuilder('t')
+            ->addSelect('p')
+            ->leftJoin('t.participant', 'p')
+            ->getQuery()->getResult();
+    }
+
     //    /**
     //     * @return Ticket[] Returns an array of Ticket objects
     //     */
