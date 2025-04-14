@@ -1,0 +1,49 @@
+{% extends 'backend_layout.html.twig' %}
+
+{% block title %}Liste des utilisateurs{% endblock %}
+
+{% block body %}
+    <main class="backoffice">
+        <section class="liste mt-5">
+            <div class="container">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title mb-5">Liste des utilisateurs</h5>
+                        <table class=" table-striped table-bordered table-hover table-responsive table-sm"
+                               id="liste" style="width: 100%; background: transparent">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Nom utilisateur</th>
+                                <th>Roles</th>
+                                <th>Connexion</th>
+                                <th>LastConnectedAt</th>
+                                <th>actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for user in users %}
+                                <tr>
+                                    <td>{{ loop.index}}</td>
+                                    <td>{{ user.username }}</td>
+                                    <td>{{ user.role}}</td>
+                                    <td>{{ user.connexion }}</td>
+                                    <td>{{ user.lastConnectedAt ? user.lastConnectedAt|date('Y-m-d H:i:s') : '' }}</td>
+                                    <td>
+                                        <a href="{{ path('app_backend_user_edit', {'id': user.id}) }}">Modifier</a>
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="6" class="text-center">Aucun enregistrement</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+{% endblock %}

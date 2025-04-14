@@ -86,7 +86,7 @@
         </section>
     </main>
 {% endblock %}
-{% block title %} Tableau de bord {% endblock %}
+{% block title %} {{ parent()}} Tableau de bord {% endblock %}
 {% block stylesheets %}
     <link rel="stylesheet" href="https://cdn.datatables.net/2.2.2/css/dataTables.bootstrap5.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.2.2/css/buttons.bootstrap5.css">
