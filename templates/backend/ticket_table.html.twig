@@ -1,0 +1,74 @@
+{% extends 'backend_layout.html.twig' %}
+
+{% block title %}
+    Affectation du participant a une table
+{% endblock %}
+
+{% block body %}
+    <main class="backoffice">
+
+        <section class="formulaire">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 col-lg-8 col-xl-6 offset-md-1 offset-lg-2 offset-xl-3">
+                        <div class="card" style="background: transparent;">
+                            <div class="card-body">
+                                {{ form_start(form) }}
+                                <div class="row form-group">
+                                    <div class="col-12 form-floating mt-3">
+                                        {{ form_widget(form.nom) }}
+                                        {{ form_label(form.nom) }}
+                                        {{ form_errors(form.nom) }}
+                                    </div>
+                                    <div class="col-12 form-floating mt-3">
+                                        {{ form_widget(form.prenom) }}
+                                        {{ form_label(form.prenom) }}
+                                        {{ form_errors(form.prenom) }}
+                                    </div>
+                                    <div class="col-12 form-floating mt-3">
+                                        {{ form_widget(form.telephone) }}
+                                        {{ form_label(form.telephone) }}
+                                        {{ form_errors(form.telephone) }}
+                                    </div>
+                                    <div class="col-12 form-floating mt-3">
+                                        {{ form_widget(form.code) }}
+                                        {{ form_label(form.code) }}
+                                        {{ form_errors(form.code) }}
+                                    </div>
+                                    <div class="col-12 form-floating mt-3">
+                                        {{ form_widget(form.statut) }}
+                                        {{ form_label(form.statut) }}
+                                        {{ form_errors(form.statut) }}
+                                    </div>
+                                    <div class="col-12 form-floating mt-3">
+                                        {{ form_widget(form.place) }}
+                                        {{ form_label(form.place) }}
+                                        {{ form_errors(form.place) }}
+                                    </div>
+                                    {% if ticket.statut == 'INVITE' %}
+                                        <div class="col-12 form-floating mt-3">
+                                            <input type="text" class="form-control" value="{{ ticket.participant.nom|upper }} {{ ticket.participant.prenom|title }}" readonly>
+                                            <label for="">Invité(e) par: </label>
+                                        </div>
+                                    {% endif %}
+                                    <div class="col-12 d-grid gap-4 mt-5">
+                                        {{ form_widget(form) }}
+                                        <button type="submit" class="btn btn-warning btn-lg">Valider</button>
+                                    </div>
+                                </div>
+                                {{ form_end(form) }}
+                            </div>
+                        </div>
+
+                        <div class="text-end mt-5">
+                            <a href="{{ app.request.headers.get('referer') ?: absolute_url(path('app_backend_dashboard')) }}" class="back" style="text-decoration:none; color: darkgreen; font-style: italic">
+                                <i class="bi bi-arrow-left-circle"></i> Retour
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock %}
+
