@@ -64,6 +64,7 @@ class Gestion
     }
 
     public function codeTicket(): string
+
     {
         do{
             $code = str_pad((int)random_int(0, 999), 3, '0', STR_PAD_LEFT);
@@ -88,7 +89,7 @@ class Gestion
             logoResizeToWidth: 80,
             logoPunchoutBackground: true,
         );
-        $result = $builder->build();
+        $result = $builderathbuild();
 
         $filename = $code . '.png';
         $path = $this->qrCodeDirector . '/' . $filename;
