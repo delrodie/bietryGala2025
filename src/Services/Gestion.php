@@ -89,7 +89,7 @@ class Gestion
             logoResizeToWidth: 80,
             logoPunchoutBackground: true,
         );
-        $result = $builderathbuild();
+        $result = $builder->build();
 
         $filename = $code . '.png';
         $path = $this->qrCodeDirector . '/' . $filename;
