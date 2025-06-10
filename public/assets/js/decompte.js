@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-    const startDate = new Date('2025-05-17T20:00:00'); // Date de dÃ©part - 08 aoÃ»t
+    const startDate = new Date('2025-06-28T20:00:00'); // Date de dÃ©part - 08 aoÃ»t
 
     const currentDate = new Date(); // Date actuelle
 
